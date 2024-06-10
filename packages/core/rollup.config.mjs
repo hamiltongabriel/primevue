@@ -172,6 +172,11 @@ const ENTRY = {
     }
 };
 
+function addCore() {
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'config/PrimeVue.js', output: process.env.OUTPUT_DIR + 'config/config' });
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'service/PrimeVueService.js', output: process.env.OUTPUT_DIR + 'service/primevueservice' });
+}
+
 function addFile() {
     fs.readdirSync(path.resolve(__dirname, process.env.INPUT_DIR), { withFileTypes: true })
         .filter((dir) => dir.isDirectory())
@@ -221,6 +226,7 @@ function addPackageJson() {
     } catch {}
 }
 
+addCore();
 addFile();
 addStyle();
 addPackageJson();
