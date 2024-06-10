@@ -106,7 +106,7 @@ const ENTRY = {
                 ]
             });
 
-            ENTRY.update.packageJson({ input, output, options: { main: `${output}.mjs`, module: `${output}.mjs` } });
+            ENTRY.update.packageJson({ input, output, options: { module: `${output}.mjs` } });
 
             return ENTRY.format;
         },
@@ -142,7 +142,7 @@ const ENTRY = {
 
                 const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
 
-                !pkg?.main?.includes('.cjs') && (pkg.main = options?.main?.substring(options.main.lastIndexOf('/')) ?? pkg.main);
+                !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ?? pkg.main);
                 pkg.module = path.basename(options?.module) ?? packageJson.module;
 
                 fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
@@ -178,13 +178,13 @@ function addThemes() {
             const input = process.env.INPUT_DIR + folderName + '/' + file;
             const output = process.env.OUTPUT_DIR + folderName.replace('presets/', '') + '/' + 'index';
 
-            ENTRY.format.es({ input, output });
+            ENTRY.format.cjs_es({ input, output });
         }
     );
 }
 
 function addCore() {
-    ENTRY.format.es({ input: process.env.INPUT_DIR + 'index.js', output: process.env.OUTPUT_DIR + 'index' });
+    ENTRY.format.cjs_es({ input: process.env.INPUT_DIR + 'index.js', output: process.env.OUTPUT_DIR + 'index' });
 }
 
 function addLibrary() {
@@ -202,7 +202,6 @@ function addPackageJson() {
 
         delete pkg.scripts;
         delete pkg.devDependencies;
-        delete pkg.publishConfig;
 
         !fs.existsSync(outputDir) && fs.mkdirSync(outputDir);
         fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(pkg, null, 4));

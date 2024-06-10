@@ -235,7 +235,6 @@ function addPackageJson() {
 
         delete pkg.scripts;
         delete pkg.devDependencies;
-        delete pkg.publishConfig;
 
         !fs.existsSync(outputDir) && fs.mkdirSync(outputDir);
         fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(pkg, null, 4));
