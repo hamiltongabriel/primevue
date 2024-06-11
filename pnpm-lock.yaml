@@ -8,6 +8,18 @@ importers:
 
   .:
     devDependencies:
+      '@babel/preset-env':
+        specifier: ^7.21.5
+        version: 7.24.7(@babel/core@7.24.7)
+      '@rollup/plugin-alias':
+        specifier: ^5.1.0
+        version: 5.1.0(rollup@4.18.0)
+      '@rollup/plugin-babel':
+        specifier: ^6.0.3
+        version: 6.0.4(@babel/core@7.24.7)(rollup@4.18.0)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.2.3(rollup@4.18.0)
       eslint:
         specifier: ^9.2.0
         version: 9.4.0
@@ -17,6 +29,15 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.3.1
+      rollup-plugin-postcss:
+        specifier: ^4.0.0
+        version: 4.0.2(postcss@8.4.38)
+      rollup-plugin-terser:
+        specifier: ^7.0.2
+        version: 7.0.2(rollup@4.18.0)
+      rollup-plugin-vue:
+        specifier: ^6.0.0-beta.9
+        version: 6.0.0(@vue/compiler-sfc@3.4.27)
 
   apps/showcase:
     dependencies:
@@ -38,7 +59,7 @@ importers:
         version: 7.24.7(@babel/core@7.24.7)
       '@primevue/core':
         specifier: workspace:*
-        version: link:../../packages/core/dist
+        version: link:../../packages/core
       '@primevue/nuxt-module':
         specifier: workspace:*
         version: link:../../packages/nuxt-module
@@ -155,35 +176,13 @@ importers:
       '@primevue/themes':
         specifier: workspace:*
         version: link:../themes/dist
-    devDependencies:
-      '@babel/preset-env':
-        specifier: ^7.21.5
-        version: 7.24.7(@babel/core@7.24.7)
-      '@rollup/plugin-alias':
-        specifier: ^5.1.0
-        version: 5.1.0(rollup@4.18.0)
-      '@rollup/plugin-babel':
-        specifier: ^6.0.3
-        version: 6.0.4(@babel/core@7.24.7)(rollup@4.18.0)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.2.3
-        version: 15.2.3(rollup@4.18.0)
-      rollup-plugin-postcss:
-        specifier: ^4.0.0
-        version: 4.0.2(postcss@8.4.38)
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(rollup@4.18.0)
-      rollup-plugin-vue:
-        specifier: ^6.0.0-beta.9
-        version: 6.0.0(@vue/compiler-sfc@3.4.27)
     publishDirectory: dist
 
   packages/icons:
     dependencies:
       '@primevue/core':
         specifier: workspace:*
-        version: link:../core/dist
+        version: link:../core
     devDependencies:
       '@babel/preset-env':
         specifier: ^7.21.5
@@ -268,7 +267,7 @@ importers:
     dependencies:
       '@primevue/core':
         specifier: workspace:*
-        version: link:../core/dist
+        version: link:../core
       '@primevue/icons':
         specifier: workspace:*
         version: link:../icons/dist
