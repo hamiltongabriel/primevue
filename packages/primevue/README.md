@@ -13,7 +13,7 @@ PrimeVue is a rich set of open source UI Components for Vue. See [PrimeVue homep
 
 PrimeVue is available at [npm](https://www.npmjs.com/package/primevue).
 
-```
+```bash
 # Using npm
 npm install primevue
 
@@ -26,7 +26,19 @@ pnpm add primevue
 
 ## Plugin
 
-PrimeVue plugin is required to be installed as an application plugin to set up the default configuration. The plugin is lightweight, only sets up the configuration object without affecting your application. PrimeVue has two styling modes; Styled and Unstyled. If you are just getting started, we suggest to using the styled mode.
+PrimeVue plugin is required to be installed as an application plugin to set up the default [configuration](https://primevue.org/configuration). The plugin is lightweight, only sets up the configuration object without affecting your application. PrimeVue has two styling modes; Styled and Unstyled. If you are just getting started, we suggest to using the styled mode.
+
+```javascript
+import { createApp } from 'vue';
+import PrimeVue from 'primevue/config';
+const app = createApp(App);
+
+app.use(PrimeVue);
+```
+
+## Theming
+
+PrimeVue has two theming has modes; styled or unstyled.
 
 **Styled Mode**
 

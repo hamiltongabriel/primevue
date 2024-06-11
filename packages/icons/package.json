@@ -16,7 +16,7 @@
     },
     "types": "./src/index.d.ts",
     "exports": {
-        "./*": "./*/index.vue",
+        "./src/*": "./src/*/index.vue",
         "./baseicon/style": "./src/baseicon/style/BaseIconStyle.js",
         "./baseicon": "./src/baseicon/BaseIcon.vue"
     },
