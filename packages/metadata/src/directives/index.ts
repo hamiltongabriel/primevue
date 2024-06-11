@@ -1,6 +1,6 @@
-import { ItemType, toItem } from '..';
+import { MetaType, toMeta } from '..';
 
-export const directives: ItemType[] = toItem([
+export const directives: MetaType[] = toMeta([
     { name: 'badge', as: 'BadgeDirective', from: 'primevue/badgedirective' },
     { name: 'tooltip', as: 'Tooltip', from: 'primevue/tooltip' },
     { name: 'ripple', as: 'Ripple', from: 'primevue/ripple' },

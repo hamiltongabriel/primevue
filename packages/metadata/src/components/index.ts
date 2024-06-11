@@ -1,6 +1,6 @@
-import { ItemType, toItem } from '..';
+import { MetaType, toMeta } from '..';
 
-export const form: ItemType[] = toItem([
+export const form: MetaType[] = toMeta([
     'AutoComplete',
     'Calendar',
     'CascadeSelect',
@@ -36,11 +36,11 @@ export const form: ItemType[] = toItem([
     'TreeSelect'
 ]);
 
-export const button: ItemType[] = toItem(['Button', 'ButtonGroup', 'SpeedDial', 'SplitButton']);
+export const button: MetaType[] = toMeta(['Button', 'ButtonGroup', 'SpeedDial', 'SplitButton']);
 
-export const data: ItemType[] = toItem(['Column', 'Row', 'ColumnGroup', 'DataTable', 'DataView', 'OrderList', 'OrganizationChart', 'Paginator', 'PickList', 'Tree', 'TreeTable', 'Timeline', 'VirtualScroller']);
+export const data: MetaType[] = toMeta(['Column', 'Row', 'ColumnGroup', 'DataTable', 'DataView', 'OrderList', 'OrganizationChart', 'Paginator', 'PickList', 'Tree', 'TreeTable', 'Timeline', 'VirtualScroller']);
 
-export const panel: ItemType[] = toItem([
+export const panel: MetaType[] = toMeta([
     'Accordion',
     'AccordionPanel',
     'AccordionHeader',
@@ -65,7 +65,7 @@ export const panel: ItemType[] = toItem([
     'Toolbar'
 ]);
 
-export const overlay: ItemType[] = toItem([
+export const overlay: MetaType[] = toMeta([
     { name: 'ConfirmDialog', use: { as: 'ConfirmationService' } },
     { name: 'ConfirmPopup', use: { as: 'ConfirmationService' } },
     'Dialog',
@@ -76,17 +76,17 @@ export const overlay: ItemType[] = toItem([
     'Sidebar'
 ]);
 
-export const file: ItemType[] = toItem(['FileUpload']);
+export const file: MetaType[] = toMeta(['FileUpload']);
 
-export const menu: ItemType[] = toItem(['Breadcrumb', 'ContextMenu', 'Dock', 'Menu', 'Menubar', 'MegaMenu', 'PanelMenu', 'Steps', 'TabMenu', 'TieredMenu']);
+export const menu: MetaType[] = toMeta(['Breadcrumb', 'ContextMenu', 'Dock', 'Menu', 'Menubar', 'MegaMenu', 'PanelMenu', 'Steps', 'TabMenu', 'TieredMenu']);
 
-export const chart: ItemType[] = toItem(['Chart']);
+export const chart: MetaType[] = toMeta(['Chart']);
 
-export const messages: ItemType[] = toItem(['Message', 'InlineMessage', { name: 'Toast', use: { as: 'ToastService' } }]);
+export const messages: MetaType[] = toMeta(['Message', 'InlineMessage', { name: 'Toast', use: { as: 'ToastService' } }]);
 
-export const media: ItemType[] = toItem(['Carousel', 'Galleria', 'Image']);
+export const media: MetaType[] = toMeta(['Carousel', 'Galleria', 'Image']);
 
-export const misc: ItemType[] = toItem(['Avatar', 'AvatarGroup', 'Badge', 'BlockUI', 'Chip', 'Inplace', 'MeterGroup', 'OverlayBadge', 'ScrollTop', 'Skeleton', 'ProgressBar', 'ProgressSpinner', 'Tag', 'Terminal']);
+export const misc: MetaType[] = toMeta(['Avatar', 'AvatarGroup', 'Badge', 'BlockUI', 'Chip', 'Inplace', 'MeterGroup', 'OverlayBadge', 'ScrollTop', 'Skeleton', 'ProgressBar', 'ProgressSpinner', 'Tag', 'Terminal']);
 
 // All PrimeVue Components
-export const components: ItemType[] = [...form, ...button, ...data, ...panel, ...overlay, ...file, ...menu, ...chart, ...messages, ...media, ...misc];
+export const components: MetaType[] = [...form, ...button, ...data, ...panel, ...overlay, ...file, ...menu, ...chart, ...messages, ...media, ...misc];

@@ -1,6 +1,6 @@
-import { ItemType, toItem } from '..';
+import { MetaType, toMeta } from '..';
 
-export const composables: ItemType[] = toItem([
+export const composables: MetaType[] = toMeta([
     { name: 'usePrimeVue', as: 'usePrimeVue', from: 'primevue/config' },
     { name: 'useStyle', as: 'useStyle', from: 'primevue/usestyle' },
     { name: 'useConfirm', as: 'useConfirm', from: 'primevue/useconfirm' },

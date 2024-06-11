@@ -137,6 +137,10 @@ importers:
         version: 0.29.8(jsdom@19.0.0)(sass@1.77.4)(terser@5.31.1)
 
   packages/auto-import-resolver:
+    dependencies:
+      '@primevue/metadata':
+        specifier: workspace:*
+        version: link:../metadata
     devDependencies:
       tsup:
         specifier: ^8.1.0

@@ -47,6 +47,7 @@ export function clearPackageJson(localPackageJson) {
     delete pkg?.scripts;
     delete pkg?.devDependencies;
     delete pkg?.publishConfig?.directory;
+    delete pkg?.publishConfig?.linkDirectory;
 
     fs.writeFileSync(localPackageJson, JSON.stringify(pkg, null, 4));
 }

@@ -24,7 +24,8 @@
                 "import": "./index.mjs"
             }
         },
-        "directory": "dist"
+        "directory": "dist",
+        "linkDirectory": false
     },
     "scripts": {
         "build": "NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",

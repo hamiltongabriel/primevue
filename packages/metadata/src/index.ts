@@ -1,4 +1,4 @@
-export interface ItemType {
+export interface MetaType {
     name?: string;
     as?: string;
     from?: string;
@@ -7,7 +7,7 @@ export interface ItemType {
     };
 }
 
-export const toItem = (arr?: any[]): ItemType[] | undefined => {
+export const toMeta = (arr?: any[]): MetaType[] | undefined => {
     return arr?.map((item) => {
         const it = typeof item === 'string' ? { name: item } : item;
         it.from ??= it?.name?.toLowerCase();

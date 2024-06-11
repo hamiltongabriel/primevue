@@ -1,6 +1,5 @@
+import { components, directives } from '@primevue/metadata';
 import type { ComponentResolver } from 'unplugin-vue-components/types';
-import { components } from './core/components';
-import { directives } from './core/directives';
 
 export interface PrimeVueResolverOptions {
     components?: {
@@ -28,10 +27,11 @@ export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): Compone
             resolve: (name: string) => {
                 const { prefix } = options.components || {};
                 const cName = getName(name, prefix);
+                const cMeta = components.find(c => c.name === cName);
 
-                if (components.some(c => c.name === cName)) {
+                if (cMeta) {
                     return {
-                        from: `primevue/${name.toLowerCase()}`
+                        from: cMeta.from
                     };
                 }
             }

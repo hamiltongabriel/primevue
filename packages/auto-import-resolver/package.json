@@ -10,15 +10,28 @@
     "types": "index.d.ts",
     "scripts": {
         "build": "NODE_ENV=production INPUT_DIR=./ OUTPUT_DIR=dist/ pnpm run build:package",
-        "build:package": "pnpm run build:clear && tsup && pnpm run build:meta",
-        "build:meta": "node ./scripts/build-meta.mjs",
-        "build:clear": "node ./scripts/build-clear.mjs"
+        "build:package": "pnpm run build:prebuild && tsup && pnpm run build:postbuild",
+        "build:prebuild": "node ./scripts/prebuild.mjs",
+        "build:postbuild": "node ./scripts/postbuild.mjs"
+    },
+    "dependencies": {
+        "@primevue/metadata": "workspace:*"
     },
     "devDependencies": {
         "tsup": "^8.1.0",
         "unplugin-vue-components": "^0.27.0"
     },
     "publishConfig": {
-        "directory": "dist"
+        "directory": "dist",
+        "linkDirectory": false
+    },
+    "private": false,
+    "homepage": "https://primevue.org/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/primefaces/primevue.git"
+    },
+    "bugs": {
+        "url": "https://github.com/primefaces/primevue/issues"
     }
 }
