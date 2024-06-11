@@ -19,7 +19,7 @@ export function resolvePath(metaUrl) {
     };
 }
 
-export function clearBuild(metaUrl) {
+export function removeBuild(metaUrl) {
     const { OUTPUT_DIR } = resolvePath(metaUrl);
 
     fs.remove(OUTPUT_DIR);
@@ -37,6 +37,15 @@ export function updatePackageJson(localPackageJson) {
     pkg.license ??= packageJson.license;
     pkg.repository = { ...pkg.repository, ...packageJson.repository };
     pkg.bugs = { ...pkg.bugs, ...packageJson.bugs };
+
+    fs.writeFileSync(localPackageJson, JSON.stringify(pkg, null, 4));
+}
+
+export function clearPackageJson(localPackageJson) {
+    const pkg = JSON.parse(fs.readFileSync(localPackageJson, { encoding: 'utf8', flag: 'r' }));
+
+    delete pkg.scripts;
+    delete pkg.devDependencies;
 
     fs.writeFileSync(localPackageJson, JSON.stringify(pkg, null, 4));
 }
