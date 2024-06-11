@@ -40,5 +40,8 @@
     },
     "dependencies": {
         "@primevue/core": "workspace:*"
+    },
+    "engines": {
+        "node": ">=12.11.0"
     }
 }

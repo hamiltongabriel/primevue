@@ -46,5 +46,8 @@
         "build:tokens": "node ./scripts/build-tokens.js",
         "build:prebuild": "node ./scripts/prebuild.mjs",
         "build:postbuild": "node ./scripts/postbuild.mjs"
+    },
+    "engines": {
+        "node": ">=12.11.0"
     }
 }
