@@ -13,6 +13,8 @@
         "url": "https://github.com/primefaces/primevue/issues"
     },
     "scripts": {
+        "release": "pnpm run build && pnpm recursive publish --filter '!apps/*' --no-git-checks",
+        "release:beta": "pnpm run build && pnpm recursive publish --filter '!apps/*' --no-git-checks --tag beta",
         "build": "NODE_ENV=production pnpm run build:check && pnpm run build:packages",
         "build:check": "pnpm run format:check && pnpm run security:check",
         "build:packages": "pnpm run build:meta && pnpm run build:resolver && pnpm run build:core && pnpm run build:module && pnpm run build:lib && pnpm run build:themes && pnpm run build:icons",
