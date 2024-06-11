@@ -14,9 +14,8 @@ export function toMeta(arr?: any[]): MetaType[] | undefined {
 
         return it;
     });
-};
+}
 
 export * from './components/index';
 export * from './composables/index';
 export * from './directives/index';
-

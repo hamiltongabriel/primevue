@@ -1,15 +1,21 @@
 {
     "name": "showcase",
-    "version": "4.0.0-beta.4",
+    "version": "4.0.0-beta.5",
+    "private": false,
+    "author": "PrimeTek Informatics",
+    "description": "",
     "homepage": "https://primevue.org/",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/primefaces/primevue.git",
-        "directory": "apps/showcase"
+        "directory": "packages/showcase"
     },
-    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/primefaces/primevue/issues"
+    },
     "scripts": {
-        "build": "nuxt build",
+        "build": "pnpm run build:prebuild && nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
@@ -18,6 +24,7 @@
         "build:package": "npm run build:api && npm run build:check && rollup -c && node build-meta",
         "build:check": "npm run format:check && npm run security:check",
         "build:api": "node ./api-generator/build-api.js && npm run themedoc && npm run apidoc && npm run format",
+        "build:prebuild": "node ./scripts/prebuild.js",
         "security:check": "npm audit --production --audit-level high",
         "format": "prettier --write \"**/*.{js,vue,d.ts}\" --cache",
         "format:check": "prettier --check \"**/*.{js,vue,d.ts}\"",
@@ -85,5 +92,8 @@
         "@docsearch/js": "^3.3.3",
         "nuxt-gtag": "^0.6.2",
         "vee-validate": "^4.8.2"
+    },
+    "engines": {
+        "node": ">=12.11.0"
     }
 }

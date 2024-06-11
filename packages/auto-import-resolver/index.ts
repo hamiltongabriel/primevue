@@ -4,10 +4,10 @@ import type { ComponentResolver } from 'unplugin-vue-components/types';
 export interface PrimeVueResolverOptions {
     components?: {
         prefix?: string;
-    },
+    };
     directives?: {
         prefix?: string;
-    }
+    };
 }
 
 export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): ComponentResolver[] {
@@ -19,7 +19,7 @@ export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): Compone
         }
 
         return name;
-    }
+    };
 
     return [
         {
@@ -27,7 +27,7 @@ export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): Compone
             resolve: (name: string) => {
                 const { prefix } = options.components || {};
                 const cName = getName(name, prefix);
-                const cMeta = components.find(c => c.name === cName);
+                const cMeta = components.find((c) => c.name === cName);
 
                 if (cMeta) {
                     return {
@@ -41,7 +41,7 @@ export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): Compone
             resolve: (name: string) => {
                 const { prefix } = options.directives || {};
                 const dName = getName(name, prefix);
-                const dMeta = directives.find(d => d.name === dName);
+                const dMeta = directives.find((d) => d.name === dName);
 
                 if (dMeta) {
                     return {

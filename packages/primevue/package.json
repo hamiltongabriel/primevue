@@ -40,6 +40,11 @@
         "attributes": "./vetur-attributes.json"
     },
     "exports": {
+        "./config": "./src/config/Config.js",
+        "./confirmationservice": "./src/confirmationservice/ConfirmationService.js",
+        "./dialogservice": "./src/dialogservice/DialogService.js",
+        "./toastservice": "./src/toastservice/ToastService.js",
+        "./badgedirective": "./src/badgedirective/BadgeDirective.js",
         "./*": "./*"
     },
     "publishConfig": {
