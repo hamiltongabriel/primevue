@@ -1,14 +1,8 @@
 import { addComponent, addImports } from '@nuxt/kit';
-import { components } from './runtime/core/components';
-import { composables } from './runtime/core/composables';
-import { directives } from './runtime/core/directives';
+import type { MetaType } from '@primevue/metadata';
+import { components, composables, directives } from '@primevue/metadata';
+import type { ConstructsType, ModuleOptions, ResolvePathOptions } from './types';
 import { Utils } from './utils';
-
-import type { ComponentType, ComponentsType } from './runtime/core/components/types';
-import type { ComposableType, ComposablesType } from './runtime/core/composables/types';
-import type { DirectiveType, DirectivesType } from './runtime/core/directives/types';
-import type { ConstructsType, ItemType } from './runtime/core/types';
-import type { ModuleOptions, ResolvePathOptions } from './types';
 
 function registerItems(items: any[] = [], options: ConstructsType = {}, params: any) {
     const included = Utils.object.getValue(options.include, params);
@@ -34,11 +28,11 @@ function registerConfig(resolvePath: any) {
     ];
 }
 
-function registerComponents(resolvePath: any, options: ComponentsType = {}) {
-    const items: ComponentType[] = registerItems(components, options, { components });
+function registerComponents(resolvePath: any, options: ConstructsType = {}) {
+    const items: MetaType[] = registerItems(components, options, { components });
 
-    return items.map((item: ComponentType) => {
-        const _item = { ...item, name: item.name, as: item.name, from: `primevue/${item.name.toLowerCase()}` };
+    return items.map((item: MetaType) => {
+        const _item = { ...item, name: item.name, as: item.name, from: item.from };
         const name = Utils.object.getName(_item, options);
         const from = resolvePath({ name, as: _item.as, from: _item.from, type: 'component' });
         const opt = {
@@ -57,10 +51,10 @@ function registerComponents(resolvePath: any, options: ComponentsType = {}) {
     });
 }
 
-function registerDirectives(resolvePath: any, options: DirectivesType = {}) {
-    const items: DirectiveType[] = registerItems(directives, options, { directives });
+function registerDirectives(resolvePath: any, options: ConstructsType = {}) {
+    const items: MetaType[] = registerItems(directives, options, { directives });
 
-    return items.map((item: DirectiveType) => {
+    return items.map((item: MetaType) => {
         const name = Utils.object.getName(item, options);
         const opt = {
             ...item,
@@ -72,10 +66,10 @@ function registerDirectives(resolvePath: any, options: DirectivesType = {}) {
     });
 }
 
-function registerComposables(resolvePath: any, options: ComposablesType = {}) {
-    const items: ComposableType[] = registerItems(composables, options, { composables });
+function registerComposables(resolvePath: any, options: ConstructsType = {}) {
+    const items: MetaType[] = registerItems(composables, options, { composables });
 
-    return items.map((item: ComposableType) => {
+    return items.map((item: MetaType) => {
         const name = item.name; //Utils.object.getName(item, options);
         const opt = {
             ...item,
@@ -92,7 +86,7 @@ function registerComposables(resolvePath: any, options: ComposablesType = {}) {
 function registerServices(resolvePath: any, registered: any) {
     const services: any = new Set<string>();
 
-    registered?.components?.forEach((component: ComponentType) => component?.use && services.add(component.use.as));
+    registered?.components?.forEach((component: MetaType) => component?.use && services.add(component.use.as));
 
     return [...services].map((service) => ({
         name: service,
@@ -102,7 +96,7 @@ function registerServices(resolvePath: any, registered: any) {
 }
 
 function registerStyles(resolvePath: any, registered: any, options: any) {
-    const styles: ItemType[] = [
+    const styles: MetaType[] = [
         {
             name: 'BaseStyle',
             as: 'BaseStyle',

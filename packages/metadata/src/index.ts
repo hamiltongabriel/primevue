@@ -7,7 +7,7 @@ export interface MetaType {
     };
 }
 
-export const toMeta = (arr?: any[]): MetaType[] | undefined => {
+export function toMeta(arr?: any[]): MetaType[] | undefined {
     return arr?.map((item) => {
         const it = typeof item === 'string' ? { name: item } : item;
         it.from ??= it?.name?.toLowerCase();
@@ -19,3 +19,4 @@ export const toMeta = (arr?: any[]): MetaType[] | undefined => {
 export * from './components/index';
 export * from './composables/index';
 export * from './directives/index';
+

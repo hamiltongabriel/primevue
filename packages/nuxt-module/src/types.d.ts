@@ -1,7 +1,11 @@
 import type { PrimeVueConfiguration } from 'primevue/config';
-import type { ComponentsType } from './runtime/core/components/types';
-import type { ComposablesType } from './runtime/core/composables/types';
-import type { DirectivesType } from './runtime/core/directives/types';
+
+export interface ConstructsType {
+    prefix?: string | undefined;
+    name?: (item: any) => string | undefined;
+    include?: '*' | Array<string | { name: string; use?: { as: string } }> | ((list: any) => string[] | undefined) | undefined;
+    exclude?: '*' | Array<string | { name: string; use?: { as: string } }> | ((list: any) => string[] | undefined) | undefined;
+}
 
 export interface ModuleOptions {
     usePrimeVue?: boolean;
@@ -10,9 +14,9 @@ export interface ModuleOptions {
     importPT?: ImportOptions;
     importTheme?: ImportOptions;
     options?: PrimeVueOptions;
-    components?: ComponentsType;
-    directives?: DirectivesType;
-    composables?: ComposablesType;
+    components?: ConstructsType;
+    directives?: ConstructsType;
+    composables?: Omit<ConstructsType, 'prefix'>;
 }
 
 export interface PrimeVueOptions extends PrimeVueConfiguration {}

@@ -26,7 +26,8 @@
             }
         },
         "directory": "dist",
-        "linkDirectory": false
+        "linkDirectory": false,
+        "access": "public"
     },
     "scripts": {
         "build": "NODE_ENV=production INPUT_DIR=./ OUTPUT_DIR=dist/ pnpm run build:package",

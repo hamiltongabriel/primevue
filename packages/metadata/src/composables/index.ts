@@ -1,4 +1,4 @@
-import { MetaType, toMeta } from '..';
+import { MetaType, toMeta } from '../index';
 
 export const composables: MetaType[] = toMeta([
     { name: 'usePrimeVue', as: 'usePrimeVue', from: 'primevue/config' },

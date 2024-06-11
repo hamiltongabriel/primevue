@@ -27,6 +27,5 @@ export default defineNuxtConfig({
             exclude: undefined
         }
     },
-    devtools: { enabled: true },
-    css: ['primevue/resources/themes/lara-light-indigo/theme.css']
+    devtools: { enabled: true }
 });

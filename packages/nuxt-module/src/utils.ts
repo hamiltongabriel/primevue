@@ -1,5 +1,5 @@
-import type { ConstructsType, ItemType } from './runtime/core/types';
-import type { ResolvePathOptions } from './types';
+import type { MetaType } from '@primevue/metadata';
+import type { ConstructsType, ResolvePathOptions } from './types';
 
 export const Utils = {
     object: {
@@ -18,7 +18,7 @@ export const Utils = {
         getValue(obj: any, ...params: any) {
             return this.isFunction(obj) ? obj(...params) : obj;
         },
-        getName(item: ItemType, options: ConstructsType) {
+        getName(item: MetaType, options: ConstructsType) {
             return this.isFunction(options?.name) ? options.name(item) : `${options.prefix}${item.name}`;
         },
         getPath(fn: any, options: ResolvePathOptions) {
@@ -27,6 +27,7 @@ export const Utils = {
         createStyleAsString(css: string, options = { name: '' }) {
             if (css) {
                 const { name, ...rest } = options;
+
                 return `'<style type="text/css" data-primevue-style-id="${name}"${Object.entries(rest).reduce((s, [k, v]) => s + `${k}="${v}"`, ' ')}>${css}</style>'`;
             }
 

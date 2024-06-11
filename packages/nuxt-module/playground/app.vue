@@ -13,6 +13,7 @@
 
 <script setup>
 import { useToast } from '#imports';
+
 const toast = useToast();
 
 const onShow = () => {

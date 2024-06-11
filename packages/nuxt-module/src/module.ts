@@ -5,7 +5,7 @@ import type { ModuleOptions } from './types';
 
 export default defineNuxtModule<ModuleOptions>({
     meta: {
-        name: 'nuxt-primevue',
+        name: '@primevue/nuxt-module',
         configKey: 'primevue',
         compatibility: {
             nuxt: '^3.0.0'
@@ -44,7 +44,7 @@ export default defineNuxtModule<ModuleOptions>({
         const resolver = createResolver(import.meta.url);
         const registered = register(moduleOptions);
         const { importPT, importTheme, options } = moduleOptions;
-        const hasTheme = importTheme && !options.unstyled;
+        const hasTheme = importTheme && !options?.unstyled;
 
         nuxt.options.runtimeConfig.public.primevue = {
             ...moduleOptions,
@@ -53,9 +53,9 @@ export default defineNuxtModule<ModuleOptions>({
 
         //nuxt.options.build.transpile.push('nuxt');
         nuxt.options.build.transpile.push('primevue');
-        nuxt.options.build.transpile.push('@primevue/core');
+        /*nuxt.options.build.transpile.push('@primevue/core');
         nuxt.options.build.transpile.push('@primevue/icons');
-        nuxt.options.build.transpile.push('@primevue/themes');
+        nuxt.options.build.transpile.push('@primevue/themes');*/
 
         const styleContent = () => `
 ${registered.styles.map((style: any) => `import ${style.as} from '${style.from}';`).join('\n')}

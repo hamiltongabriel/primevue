@@ -1,4 +1,4 @@
-import { MetaType, toMeta } from '..';
+import { MetaType, toMeta } from '../index';
 
 export const directives: MetaType[] = toMeta([
     { name: 'badge', as: 'BadgeDirective', from: 'primevue/badgedirective' },
