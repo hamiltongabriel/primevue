@@ -44,8 +44,9 @@ export function updatePackageJson(localPackageJson) {
 export function clearPackageJson(localPackageJson) {
     const pkg = JSON.parse(fs.readFileSync(localPackageJson, { encoding: 'utf8', flag: 'r' }));
 
-    delete pkg.scripts;
-    delete pkg.devDependencies;
+    delete pkg?.scripts;
+    delete pkg?.devDependencies;
+    delete pkg?.publishConfig?.directory;
 
     fs.writeFileSync(localPackageJson, JSON.stringify(pkg, null, 4));
 }
