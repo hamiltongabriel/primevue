@@ -1,29 +1,49 @@
 {
     "name": "@primevue/themes",
-    "version": "1.0.0",
+    "version": "4.0.0-beta.5",
+    "private": false,
+    "author": "PrimeTek Informatics",
     "description": "",
-    "keywords": [],
-    "author": "",
+    "homepage": "https://primevue.org/",
     "license": "MIT",
-    "scripts": {
-        "build": "NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
-        "build:package": "pnpm run build:clear && pnpm run build:tokens && rollup -c && pnpm run build:meta",
-        "build:tokens": "node ./scripts/build-tokens.js",
-        "build:meta": "node ./scripts/build-meta.mjs",
-        "build:clear": "node ./scripts/build-clear.mjs"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/primefaces/primevue.git",
+        "directory": "packages/themes"
     },
-    "devDependencies": {
-        "@babel/preset-env": "^7.21.5",
-        "@rollup/plugin-babel": "^6.0.3",
-        "@rollup/plugin-alias": "^5.1.0",
-        "@rollup/plugin-node-resolve": "^15.2.3",
-        "rollup-plugin-postcss": "^4.0.0",
-        "rollup-plugin-terser": "^7.0.2",
-        "rollup-plugin-vue": "^6.0.0-beta.9"
+    "bugs": {
+        "url": "https://github.com/primefaces/primevue/issues"
+    },
+    "main": "./src/index.js",
+    "types": "./src/index.d.ts",
+    "exports": {
+        ".": "./src/index.js",
+        "./aura": "./src/presets/aura/index.js",
+        "./lara": "./src/presets/lara/index.js",
+        "./nora": "./src/presets/nora/index.js"
     },
     "publishConfig": {
+        "main": "./index.mjs",
+        "module": "./index.mjs",
+        "types": "./index.d.ts",
+        "exports": {
+            ".": {
+                "types": "./index.d.ts",
+                "import": "./index.mjs"
+            },
+            "./*": {
+                "types": "./types/*/index.d.ts",
+                "import": "./*/index.mjs"
+            }
+        },
         "directory": "dist",
-        "main": "index.mjs",
-        "module": "index.mjs"
+        "linkDirectory": false
+    },
+    "scripts": {
+        "build": "NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+        "build:package": "pnpm run build:prebuild && pnpm run build:tokens && rollup -c && pnpm run build:postbuild",
+        "build:tokens": "node ./scripts/build-tokens.js",
+        "build:prebuild": "node ./scripts/prebuild.mjs",
+        "build:postbuild": "node ./scripts/postbuild.mjs"
     }
 }

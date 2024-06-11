@@ -106,7 +106,7 @@ const ENTRY = {
                 ]
             });
 
-            ENTRY.update.packageJson({ input, output, options: { module: `${output}.mjs` } });
+            ENTRY.update.packageJson({ input, output, options: { main: `${output}.mjs`, module: `${output}.mjs` } });
 
             return ENTRY.format;
         },
@@ -142,8 +142,9 @@ const ENTRY = {
 
                 const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
 
-                !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ?? pkg.main);
-                pkg.module = path.basename(options?.module) ?? packageJson.module;
+                !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
+                pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
+                //pkg.types && (pkg.types = './index.d.ts');
 
                 fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
             } catch {}
@@ -176,15 +177,15 @@ function addThemes() {
             const searchFolder = '/' + process.env.INPUT_DIR;
             const folderName = folderPath.substring(folderPath.indexOf(searchFolder) + searchFolder.length);
             const input = process.env.INPUT_DIR + folderName + '/' + file;
-            const output = process.env.OUTPUT_DIR + folderName.replace('presets/', '') + '/' + 'index';
+            const output = process.env.OUTPUT_DIR + folderName.replace('presets/', '') + '/index';
 
-            ENTRY.format.cjs_es({ input, output });
+            ENTRY.format.es({ input, output });
         }
     );
 }
 
 function addCore() {
-    ENTRY.format.cjs_es({ input: process.env.INPUT_DIR + 'index.js', output: process.env.OUTPUT_DIR + 'index' });
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'index.js', output: process.env.OUTPUT_DIR + 'index' });
 }
 
 function addLibrary() {
@@ -195,22 +196,8 @@ function addLibrary() {
         });
 }
 
-function addPackageJson() {
-    try {
-        const outputDir = path.resolve(__dirname, process.env.OUTPUT_DIR);
-        const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, './package.json'), { encoding: 'utf8', flag: 'r' }));
-
-        delete pkg.scripts;
-        delete pkg.devDependencies;
-
-        !fs.existsSync(outputDir) && fs.mkdirSync(outputDir);
-        fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(pkg, null, 4));
-    } catch {}
-}
-
 addCore();
 addThemes();
 addLibrary();
-addPackageJson();
 
 export default ENTRY.entries;
