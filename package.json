@@ -1,13 +1,24 @@
 {
     "name": "@primevue/monorepo",
-    "version": "1.0.0",
-    "description": "",
+    "version": "4.0.0-beta.5",
+    "private": false,
+    "author": "PrimeTek Informatics",
+    "homepage": "https://primevue.org/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/primefaces/primevue.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/primefaces/primevue/issues"
+    },
     "scripts": {
         "build": "NODE_ENV=production pnpm run build:check && pnpm run build:packages",
         "build:check": "pnpm run format:check && pnpm run security:check",
-        "build:packages": "pnpm run build:resolver && pnpm run build:core && pnpm run build:module && pnpm run build:lib && pnpm run build:themes && pnpm run build:icons",
+        "build:packages": "pnpm run build:meta && pnpm run build:resolver && pnpm run build:core && pnpm run build:module && pnpm run build:lib && pnpm run build:themes && pnpm run build:icons",
         "build:resolver": "pnpm --filter auto-import-resolver build",
         "build:core": "pnpm --filter core build",
+        "build:metadata": "pnpm --filter metadata build",
         "build:module": "pnpm --filter nuxt-module build",
         "build:lib": "pnpm --filter primevue build",
         "build:themes": "pnpm --filter themes build",
@@ -20,12 +31,12 @@
         "lint": "eslint --ext \".vue,.js,.mjs,.ts\" --ignore-path .gitignore . --cache",
         "lint:fix": "eslint --fix --ext \".vue,.js,.mjs,.ts\" --ignore-path .gitignore ."
     },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
     "devDependencies": {
         "eslint": "^9.2.0",
         "prettier": "^3.2.5",
         "pnpm": "9.1.4"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
