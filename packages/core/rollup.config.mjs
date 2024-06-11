@@ -164,8 +164,8 @@ const ENTRY = {
                 const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
 
                 !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
-                pkg.module = path.basename(options?.module) ?`./${path.basename(options.module)}` : packageJson.module;
-                pkg.types = './index.d.ts';
+                pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
+                pkg.types && (pkg.types = './index.d.ts');
 
                 fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
             } catch {}

@@ -150,8 +150,9 @@ const ENTRY = {
 
                 const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
 
-                !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ?? pkg.main);
-                pkg.module = path.basename(options?.module) ?? packageJson.module;
+                !pkg?.main?.includes('.cjs') && (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
+                pkg.module = path.basename(options?.module) ?`./${path.basename(options.module)}` : packageJson.module;
+                pkg.types && (pkg.types ='./index.d.ts');
 
                 fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
             } catch {}
@@ -167,9 +168,8 @@ function addIcons() {
         .forEach(({ name: folderName }) => {
             fs.readdirSync(path.resolve(__dirname, iconDir + '/' + folderName)).forEach((file) => {
                 if (/\.vue$/.test(file)) {
-                    const name = file.split(/(.vue)$/)[0].toLowerCase();
                     const input = process.env.INPUT_DIR + folderName + '/' + file;
-                    const output = process.env.OUTPUT_DIR + folderName + '/' + name;
+                    const output = process.env.OUTPUT_DIR + folderName + '/index';
 
                     ENTRY.format.es({ input, output });
                 }
@@ -186,7 +186,7 @@ function addStyle() {
                     if (/\.js$/.test(file)) {
                         const name = file.split(/(.js)$/)[0].toLowerCase();
                         const input = process.env.INPUT_DIR + folderName + '/style/' + file;
-                        const output = process.env.OUTPUT_DIR + folderName + '/style/' + name;
+                        const output = process.env.OUTPUT_DIR + folderName + '/style/index';
 
                         ENTRY.format.es({ input, output });
                     }
@@ -195,21 +195,7 @@ function addStyle() {
         });
 }
 
-function addPackageJson() {
-    try {
-        const outputDir = path.resolve(__dirname, process.env.OUTPUT_DIR);
-        const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, './package.json'), { encoding: 'utf8', flag: 'r' }));
-
-        delete pkg.scripts;
-        delete pkg.devDependencies;
-
-        !fs.existsSync(outputDir) && fs.mkdirSync(outputDir);
-        fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(pkg, null, 4));
-    } catch {}
-}
-
 addIcons();
 addStyle();
-addPackageJson();
 
 export default ENTRY.entries;
