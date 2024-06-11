@@ -1,13 +1,32 @@
 {
     "name": "@primevue/auto-import-resolver",
-    "version": "1.0.0",
+    "version": "4.0.0-beta.5",
+    "private": false,
+    "author": "PrimeTek Informatics",
     "description": "",
-    "keywords": [],
-    "author": "",
+    "homepage": "https://primevue.org/",
     "license": "MIT",
-    "main": "index.mjs",
-    "module": "index.mjs",
-    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/primefaces/primevue.git"
+    },
+    "bugs": {
+        "url": "https://github.com/primefaces/primevue/issues"
+    },
+    "main": "./index.ts",
+    "publishConfig": {
+        "main": "./index.mjs",
+        "module": "./index.mjs",
+        "types": "./index.d.mts",
+        "exports": {
+            ".": {
+                "types": "./index.d.mts",
+                "import": "./index.mjs"
+            }
+        },
+        "directory": "dist",
+        "linkDirectory": false
+    },
     "scripts": {
         "build": "NODE_ENV=production INPUT_DIR=./ OUTPUT_DIR=dist/ pnpm run build:package",
         "build:package": "pnpm run build:prebuild && tsup && pnpm run build:postbuild",
@@ -20,18 +39,5 @@
     "devDependencies": {
         "tsup": "^8.1.0",
         "unplugin-vue-components": "^0.27.0"
-    },
-    "publishConfig": {
-        "directory": "dist",
-        "linkDirectory": false
-    },
-    "private": false,
-    "homepage": "https://primevue.org/",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/primefaces/primevue.git"
-    },
-    "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
     }
 }

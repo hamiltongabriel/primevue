@@ -8,7 +8,8 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git"
+        "url": "https://github.com/primefaces/primevue.git",
+        "directory": "packages/metadata"
     },
     "bugs": {
         "url": "https://github.com/primefaces/primevue/issues"
