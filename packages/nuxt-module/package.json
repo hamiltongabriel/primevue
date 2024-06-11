@@ -59,7 +59,6 @@
         "@nuxt/kit": "^3.7.3",
         "pathe": "^1.1.2",
         "primevue": "workspace:*",
-        "@primevue/core": "workspace:*",
         "@primevue/metadata": "workspace:*"
     },
     "devDependencies": {

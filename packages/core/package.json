@@ -24,7 +24,7 @@
         "./config": "./src/config/PrimeVue.js",
         "./service": "./src/service/PrimeVueService.js",
         "./usestyle": "./src/usestyle/UseStyle.js",
-        "./utils": "./src/service/Utils.js"
+        "./utils": "./src/utils/Utils.js"
     },
     "publishConfig": {
         "exports": {

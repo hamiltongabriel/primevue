@@ -16,9 +16,9 @@
     },
     "types": "./src/index.d.ts",
     "exports": {
-        "./src/*": "./src/*/index.vue",
         "./baseicon/style": "./src/baseicon/style/BaseIconStyle.js",
-        "./baseicon": "./src/baseicon/BaseIcon.vue"
+        "./baseicon": "./src/baseicon/BaseIcon.vue",
+        "./*": "./src/*/index.vue"
     },
     "publishConfig": {
         "types": "./index.d.ts",
